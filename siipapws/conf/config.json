@@ -1,0 +1,11 @@
+{
+    "FILE_NAME": "config.json",
+    "SECRET_KEY": "django-insecure-&v@dlw-ze5jlsr4wr3n3cid7#r()r4bwlia4q+f0ixxuw%cz**",
+    "DB_NAME": "siipapx",
+    "USER": "doadmin",
+    "HOST": "siipapx-do-user-12682518-0.b.db.ondigitalocean.com",
+    "PASSWORD": "AVNS_1qaW-llPASFUcY7SCRH",
+    "PORT": 25060,
+    "EDICOM_USER": "PAP830101CR3",
+    "EDICOM_PASSWORD": "yqjvqfofb"
+}
