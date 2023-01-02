@@ -13,5 +13,5 @@ class AppConfig(models.Model):
     envio_de_correos_activo = models.BooleanField(default=True) 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'app_config'
