@@ -44,6 +44,7 @@ LOCAL_APPS = [
     'applications.authentication',
     'applications.logistica',
     'applications.inventario',
+    'applications.pruebas'
 ]
 
 THIRD_PART_APPS = [
