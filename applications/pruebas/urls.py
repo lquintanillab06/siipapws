@@ -1,11 +1,13 @@
 from django.urls import path, include
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 
 from . import views
 
-router = SimpleRouter()
-router.register(r'marcas',views.MarcaPruebaViewSet,basename="marcas")
-
+router = DefaultRouter(trailing_slash = False)
+#router.register(r'marcas',views.MarcaPruebaViewSet,basename="marcas")
+#router.register(r'marcas',views.MarcaPruebaViewSet)
+#router.register(r'marcas_test',views.MarcaTestViewSet)
+router.register(r'marca_model',views.MarcaModelViewSet)
 
 urlpatterns = [
     path('api/prueba', views.Prueba1.as_view(), name='prueba'),
@@ -15,5 +17,7 @@ urlpatterns = [
     path('api/banco1/<int:year>/<pk>', views.BancoRetrieve2.as_view(),name= "banco1"),
     path('api/banco2/<int:year>/<pk>', views.prueba_banco,name= "banco2"),
     path('api/listar_marcas', views.ListarMarcas.as_view(),name= "lista marcas"),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)), 
+    path('api/test_parser/<filename>', views.ViewParser.as_view(),name= "parser"),
+    path('api/test_ser', views.TestSerializer.as_view(),name= "serializer"),
 ]

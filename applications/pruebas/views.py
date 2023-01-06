@@ -1,17 +1,22 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.status import HTTP_200_OK
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ViewSet,ModelViewSet
+from rest_framework.decorators import action
+from rest_framework.parsers import JSONParser, FileUploadParser
 # Create your views here.
 
 from ..core.serializers import ProductoSerializer,BancoSerializer
 from ..core.models import Producto, Banco
 
-from .serializers import MarcaPruebasSerializer, MarcaPruebasSerializerPartial
+from .serializers import MarcaPruebasSerializer, MarcaPruebasSerializerPartial, ComentarioSerializer
 from .models import MarcaPruebas
+
+from .pojos import Comentario
 
 
 
@@ -83,9 +88,84 @@ class MarcaPruebaViewSet(ViewSet):
     queryset = MarcaPruebas.objects.all()
 
     def list(self, request):
-          queryset = MarcaPruebas.objects.all()
-
+        # url -> http://localhost:8000/api/marcas 'dependiendo del metodo se ejecuta una accion'
+        serialized = MarcaPruebasSerializer(self.queryset, many= True)
+        #print(datos)
+        return Response({'Respuesta': 'Exitoso desde View SET!!!!!!','datos': serialized.data},HTTP_200_OK, content_type='application/json')
 
         
+    def create(self,request):
+
+        print(request.data)
+        return Response({'Respuesta': 'Exitoso desde el create del view set!!!!!!','datos': request.data},HTTP_200_OK, content_type='application/json')
     
+    def retrieve(self,request, pk = None):
+        print(pk)
+        return Response({'Respuesta': 'Exitoso desde el retrieve del view set!!!!!!','datos': request.data},HTTP_200_OK, content_type='application/json')
+
+    @action(detail= False, methods = ['GET'])
+    def listar(self, request):
+        # url -> http://localhost:8000/api/marcas/listar
+        return Response({"Respuesta":"Exitoso desde el action "})
+
+
+
+class MarcaTestViewSet(ViewSet):
     
+    queryset = MarcaPruebas.objects.all()
+
+    def list(self, request):
+        # url -> http://localhost:8000/api/marcas 'dependiendo del metodo se ejecuta una accion'
+        serialized = MarcaPruebasSerializer(self.queryset, many= True)
+        #print(datos)
+        return Response({'Respuesta': 'Exitoso desde View SET de Test!!!!!!','datos': serialized.data},HTTP_200_OK, content_type='application/json')
+
+
+
+class MarcaModelViewSet(ModelViewSet):
+
+    queryset = MarcaPruebas.objects.all()
+    serializer_class = MarcaPruebasSerializer
+
+
+class ViewParser(APIView):
+
+    parser_classes=[FileUploadParser]
+
+    def post(self, request, filename, format=None):
+        print(request.data['file'])
+        return Response({"Texto": "Prueba de Parser"})
+
+    def put(self, request, filename, format=None):
+        print(filename)
+        print(request.data)
+        file = request.data['file']
+        return HttpResponse(file, content_type='application/pdf')
+
+
+class TestSerializer(APIView):
+
+    def get(self, request):
+
+        datos = request.data
+        #print(datos)
+        comentario = Comentario(nombre=datos['nombre'],texto= datos['texto'])
+        # Serializacion
+        datos_serialized = ComentarioSerializer(comentario)
+        print("Datos serializados: ",datos_serialized.data)
+
+        # Des serializacion
+        ser = ComentarioSerializer(data=datos_serialized.data)
+        print(ser.is_valid())
+        print("Datos validados: ",ser.validated_data)
+
+        comentario2 = ser.create(ser.validated_data)
+
+        print("Comentario2: ", comentario2.__dict__)
+
+        ser2 = ComentarioSerializer(data={'nombre':'juan','texto': 'texto_actualizado'})
+        print(ser2.is_valid())
+        comentario2_act = ser2.update(comentario2,ser2.validated_data)
+        print("Comentario3: ", comentario2_act.__dict__)
+        return Response(datos_serialized.data)
+
