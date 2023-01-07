@@ -3,18 +3,22 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView,CreateAPIView
 from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ViewSet,ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser, FileUploadParser
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 from ..core.serializers import ProductoSerializer,BancoSerializer
 from ..core.models import Producto, Banco
 
-from .serializers import MarcaPruebasSerializer, MarcaPruebasSerializerPartial, ComentarioSerializer
-from .models import MarcaPruebas
+from .serializers import MarcaPruebasSerializer, MarcaPruebasSerializerPartial, ComentarioSerializer, UsuarioPruebasSerializer
+from .models import MarcaPruebas,UsuarioPruebas, PerfilPruebas
+from .permisions import IsAdminOrReadOnly
+
+from ..authentication.models import User
 
 from .pojos import Comentario
 
@@ -85,12 +89,23 @@ class ListarMarcas(ListAPIView):
 
 class MarcaPruebaViewSet(ViewSet):
 
+    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminOrReadOnly]
+
     queryset = MarcaPruebas.objects.all()
 
     def list(self, request):
         # url -> http://localhost:8000/api/marcas 'dependiendo del metodo se ejecuta una accion'
         serialized = MarcaPruebasSerializer(self.queryset, many= True)
         #print(datos)
+
+        user = User.objects.get(pk=2)
+
+        print(user)
+        print(user.has_perm('pruebas.delete_usuariopruebas'))
+        print(user.has_perm('pruebas.add_usuariopruebas'))
+        #user.set_password('dragon')
+        #user.save()
         return Response({'Respuesta': 'Exitoso desde View SET!!!!!!','datos': serialized.data},HTTP_200_OK, content_type='application/json')
 
         
@@ -123,6 +138,8 @@ class MarcaTestViewSet(ViewSet):
 
 
 class MarcaModelViewSet(ModelViewSet):
+
+
 
     queryset = MarcaPruebas.objects.all()
     serializer_class = MarcaPruebasSerializer
@@ -168,4 +185,17 @@ class TestSerializer(APIView):
         comentario2_act = ser2.update(comentario2,ser2.validated_data)
         print("Comentario3: ", comentario2_act.__dict__)
         return Response(datos_serialized.data)
+
+
+class CreateUsuarioPruebas(CreateAPIView):
+    serializer_class = UsuarioPruebasSerializer
+    
+    ''' def post(self, request):
+        print(request.data)
+        serializer = UsuarioPruebasSerializer(data = request.data)
+        print(serializer.is_valid())
+        print(serializer.validated_data['perfil'].__dict__)
+        #serializer.save()
+        return Response({"Res":"Correcto!!!", "data": request.data}) '''
+
 

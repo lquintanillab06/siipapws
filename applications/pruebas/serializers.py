@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import MarcaPruebas
+from .models import MarcaPruebas, PerfilPruebas, UsuarioPruebas
 from .pojos import Comentario
 
 
@@ -39,3 +39,28 @@ class ComentarioSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.texto = validated_data['texto']
         return instance
+
+
+
+class PerfilPruebasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  PerfilPruebas
+        fields= ['username','nip']
+
+
+class UsuarioPruebasSerializer(serializers.ModelSerializer):
+    perfil = PerfilPruebasSerializer()
+    class Meta:
+        model = UsuarioPruebas
+        fields= ['nombre','email','perfil']
+
+    def create(self, validated_data):
+        print("Ejecutando el create con: ", validated_data)
+        perfil_data = validated_data.pop('perfil')
+        print("*"*100)
+        print(perfil_data)
+        print(validated_data)
+        print("*"*100)
+        usuario = UsuarioPruebas.objects.create(**validated_data)
+        PerfilPruebas.objects.create(usuario = usuario, **perfil_data)
+        return usuario 

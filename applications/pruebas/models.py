@@ -12,3 +12,24 @@ class MarcaPruebas(models.Model):
     class Meta:
         managed = True
         db_table = 'marca_pruebas'
+
+class UsuarioPruebas(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    nombre = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    class Meta:
+        managed = True
+        db_table = 'usuario_pruebas'
+
+
+class PerfilPruebas(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    username = models.CharField(max_length=100)
+    nip = models.CharField(max_length=100)
+    usuario = models.ForeignKey(UsuarioPruebas,on_delete= models.CASCADE, related_name='perfil')
+    class Meta:
+        managed = True
+        db_table = 'perfil_pruebas'
+
+
+

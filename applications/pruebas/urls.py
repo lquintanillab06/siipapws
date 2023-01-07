@@ -4,10 +4,11 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter(trailing_slash = False)
-#router.register(r'marcas',views.MarcaPruebaViewSet,basename="marcas")
+#router = DefaultRouter()
+router.register(r'marcas',views.MarcaPruebaViewSet,basename="marcas")
 #router.register(r'marcas',views.MarcaPruebaViewSet)
-#router.register(r'marcas_test',views.MarcaTestViewSet)
-router.register(r'marca_model',views.MarcaModelViewSet)
+router.register(r'marcas_test',views.MarcaTestViewSet,basename="marcas_test")
+router.register(r'marca_model',views.MarcaModelViewSet,basename="marca_model")
 
 urlpatterns = [
     path('api/prueba', views.Prueba1.as_view(), name='prueba'),
@@ -20,4 +21,5 @@ urlpatterns = [
     path('api/', include(router.urls)), 
     path('api/test_parser/<filename>', views.ViewParser.as_view(),name= "parser"),
     path('api/test_ser', views.TestSerializer.as_view(),name= "serializer"),
+    path('api/usuario', views.CreateUsuarioPruebas.as_view(),name= "user"),
 ]
