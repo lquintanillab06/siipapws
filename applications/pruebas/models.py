@@ -20,6 +20,7 @@ class UsuarioPruebas(models.Model):
     class Meta:
         managed = True
         db_table = 'usuario_pruebas'
+        permissions =[ ('set_password','Can set the password')]
 
 
 class PerfilPruebas(models.Model):

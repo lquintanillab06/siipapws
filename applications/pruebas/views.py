@@ -11,12 +11,14 @@ from rest_framework.parsers import JSONParser, FileUploadParser
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
+
 from ..core.serializers import ProductoSerializer,BancoSerializer
 from ..core.models import Producto, Banco
 
 from .serializers import MarcaPruebasSerializer, MarcaPruebasSerializerPartial, ComentarioSerializer, UsuarioPruebasSerializer
 from .models import MarcaPruebas,UsuarioPruebas, PerfilPruebas
 from .permisions import IsAdminOrReadOnly
+from .pagination import LargeResultsSetPagination,CursorSetPagination
 
 from ..authentication.models import User
 
@@ -85,7 +87,10 @@ def prueba_banco(request,*args,**kwargs):
 
 class ListarMarcas(ListAPIView):
     queryset = MarcaPruebas.objects.all()
+    #pagination_class = LargeResultsSetPagination
+    pagination_class = LargeResultsSetPagination
     serializer_class = MarcaPruebasSerializerPartial
+
 
 class MarcaPruebaViewSet(ViewSet):
 
@@ -104,6 +109,9 @@ class MarcaPruebaViewSet(ViewSet):
         print(user)
         print(user.has_perm('pruebas.delete_usuariopruebas'))
         print(user.has_perm('pruebas.add_usuariopruebas'))
+        print(user.has_perm('core.add_proveedor'))
+        print(user.has_perm('core.add_cliente'))
+        print(user.has_perm('pruebas.set_password'))
         #user.set_password('dragon')
         #user.save()
         return Response({'Respuesta': 'Exitoso desde View SET!!!!!!','datos': serialized.data},HTTP_200_OK, content_type='application/json')
@@ -138,11 +146,13 @@ class MarcaTestViewSet(ViewSet):
 
 
 class MarcaModelViewSet(ModelViewSet):
-
-
-
     queryset = MarcaPruebas.objects.all()
     serializer_class = MarcaPruebasSerializer
+
+    @action(detail= False, methods = ['GET'])
+    def listar(self, request):
+        # url -> http://localhost:8000/api/marcas/listar
+        return Response({"Respuesta":"Exitoso desde el action "})
 
 
 class ViewParser(APIView):
@@ -197,5 +207,11 @@ class CreateUsuarioPruebas(CreateAPIView):
         print(serializer.validated_data['perfil'].__dict__)
         #serializer.save()
         return Response({"Res":"Correcto!!!", "data": request.data}) '''
+
+class VistaConFiltro(ListAPIView):
+
+    queryset = MarcaPruebas.objects.all()
+    serializer_class = MarcaPruebasSerializer
+
 
 
