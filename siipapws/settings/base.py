@@ -4,6 +4,8 @@ from django.core.exceptions import ImproperlyConfigured
 import json
 from datetime import timedelta
 
+import logging
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -17,6 +19,30 @@ def get_config(variable, config= configuration):
         msg = "La Variable no Existe"
         raise ImproperlyConfigured(msg)
 
+
+LOGGING = {
+    # Define the logging version
+    'version': 1,
+    # Enable the existing loggers
+    'disable_existing_loggers': False,
+
+    # Define the handlers
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+
+   # Define the loggers
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+
+        },
+    },
+}
 
 
 # Quick-start development settings - unsuitable for production
