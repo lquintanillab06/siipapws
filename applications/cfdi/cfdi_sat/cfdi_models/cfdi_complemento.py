@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 
-class SatComplemento(ABC):
+class CfdiComplemento(ABC):
 
     def __init__(self):
         pass

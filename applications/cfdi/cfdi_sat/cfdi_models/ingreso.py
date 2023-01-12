@@ -1,8 +1,8 @@
-from .sat_entity import SatEntity
+from .cfdi_entity import CfdiEntity
 
 
 
-class Ingreso(SatEntity):
+class Ingreso(CfdiEntity):
 
     def __init__(self):
         self.tipo = "Ingreso"
