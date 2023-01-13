@@ -7,7 +7,7 @@ class Comprobante():
         self.InformacionGlobal = None
 
         # CfdiRelacionados type List<CfdiRelacionados>
-        self.CfdiRelacionados = []
+        self.CfdiRelacionados = None
 
         # Emisor type Emisor - required
         self.Emisor = None
@@ -27,7 +27,7 @@ class Comprobante():
         #Adenda type Adenda
         self.Adenda = None
 
-        # Version type String
+        # Version type String - required
         self.Version = None
 
         # Serie type Serie

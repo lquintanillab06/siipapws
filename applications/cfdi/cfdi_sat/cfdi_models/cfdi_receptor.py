@@ -7,3 +7,5 @@ class CfdiEmisor():
         self.regimen_fiscal = regimen_fiscal
         self.domicilio_fiscal = domicilio_fiscal
         self.uso_cfdi = uso_cfdi
+        self.residencia_fiscal = None
+        self.num_reg_id_trib = None

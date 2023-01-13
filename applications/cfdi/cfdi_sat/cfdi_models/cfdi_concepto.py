@@ -3,6 +3,7 @@ class CfdiConcepto():
 
     def __init__(self):
         self.clav_prod_serv = None
+        self.no_identificacion = None
         self.cantidad = 0
         self.clave_unidad = None
         self.unidad = None
@@ -16,8 +17,8 @@ class CfdiConcepto():
             'retenciones':[]
         }
 
-    def add_traslado(self):
-        pass
+    def add_traslado(self,traslado):
+        self.concepto_impuestos['traslados'].append(traslado)
 
-    def add_retencion(self):
-        pass
+    def add_retencion(self,retencion):
+        self.concepto_impuestos['retenciones'].append(retencion)
