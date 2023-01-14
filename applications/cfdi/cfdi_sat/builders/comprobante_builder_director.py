@@ -72,8 +72,9 @@ class ComprobanteBuilderDirector():
                     .build_conceptos()
                     )
 
-        nomina_builder = NominaBuilder('nomina')
-        nomina_builder.get_nomina()
+        #nomina_builder = NominaBuilder('nomina')
+        #complemento_nomina = nomina_builder.get_nomina()
+        #builder.build_complemento(complemento_nomina)
         comprobante = builder.get_comprobante()
         
         
