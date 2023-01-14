@@ -3,4 +3,8 @@ from ..cfdi_v4.complementos.nomina import ObjectNominaFactory
 
 class NominaBuilder():
 
-    pass
+    def __init__(self, nomina):
+        self.nomina = nomina
+
+    def get_nomina(self):
+        pass

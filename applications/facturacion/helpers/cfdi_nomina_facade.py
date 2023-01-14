@@ -7,27 +7,27 @@ from datetime import datetime,date
 class CfdiNominaFacade():
 
     def create_cfdi_nomina(self):
-        traslado = EntitySatNomina()
-        traslado.serie = "FAC"
-        traslado.folio = "1000"
-        traslado.forma_pago = "efectivo"
-        traslado.tipo_cambio = 1.00
-        traslado.subtotal = 84.00
-        traslado.total = 100.00
-        traslado.descuento = 1
-        traslado.condiciones_de_pago = "PUE"
-        traslado.exportacion = "02"
-        traslado.metodo_pago = "PUE"
-        traslado.lugar_de_expedicion = "02870"
-        traslado.moneda = 'MXN'
-        traslado.fecha = date(2023,1,13)
+        nomina = EntitySatNomina()
+        nomina.serie = "FAC"
+        nomina.folio = "1000"
+        nomina.forma_pago = "efectivo"
+        nomina.tipo_cambio = 1.00
+        nomina.subtotal = 84.00
+        nomina.total = 100.00
+        nomina.descuento = 1
+        nomina.condiciones_de_pago = "PUE"
+        nomina.exportacion = "02"
+        nomina.metodo_pago = "PUE"
+        nomina.lugar_de_expedicion = "02870"
+        nomina.moneda = 'MXN'
+        nomina.fecha = date(2023,1,13)
 
         emisor = ObjectCfdiEntityFactory.create_cfdi_emisor()
         emisor.nombre = "LUIS QUINTANILLA BAUTISTA"
         emisor.rfc = "LQB790930A69"
         emisor.regimen_fiscal = "605"
        
-        traslado.add_emisor(emisor)
+        nomina.add_emisor(emisor)
 
         receptor = ObjectCfdiEntityFactory.create_cfdi_receptor()
         receptor.nombre = "PAPEL"
@@ -36,7 +36,7 @@ class CfdiNominaFacade():
         receptor.domicilio_fiscal = "03200"
         receptor.uso_cfdi = "G01"
         
-        traslado.add_receptor(receptor)
+        nomina.add_receptor(receptor)
 
         concepto1 = ObjectCfdiEntityFactory.create_cfdi_concepto()
         concepto1.clav_prod_serv = 'POL100'
@@ -50,13 +50,13 @@ class CfdiNominaFacade():
         concepto1.importe = 100
         concepto1.objeto_imp = '02'
 
-        traslado.add_concepto(concepto1)
+        nomina.add_concepto(concepto1)
 
-        comprobante = ComprobanteBuilderDirector().build(traslado)
+        comprobante = ComprobanteBuilderDirector().build(nomina)
 
 
         print('*'*100)
-        print(traslado.__dict__)
+        print(nomina.__dict__)
         print('*'*100)
         print(comprobante.__dict__)
         print(comprobante.Emisor.__dict__)

@@ -1,4 +1,5 @@
 from .comprobante_builder import ComprobanteBuilder
+from .nomina_builder import NominaBuilder
 
 class ComprobanteBuilderDirector():
 
@@ -15,7 +16,7 @@ class ComprobanteBuilderDirector():
             return self.build_traslado(entity)
 
         if entity.tipo == 'N':
-            return self.build_traslado(entity)
+            return self.build_nomina(entity)
 
        
 
@@ -63,16 +64,18 @@ class ComprobanteBuilderDirector():
 
 
     def build_nomina(self,entity):
+
+        builder = (ComprobanteBuilder(entity)
+                    .build_comprobante()
+                    .build_emisor()
+                    .build_receptor()
+                    .build_conceptos()
+                    )
+
+        nomina_builder = NominaBuilder('nomina')
+        nomina_builder.get_nomina()
+        comprobante = builder.get_comprobante()
         
-        builder = ComprobanteBuilder(entity)
-        comprobante = (
-        builder
-        .build_comprobante()
-        .build_emisor()
-        .build_receptor()
-        .build_conceptos()
-        .get_comprobante()
-        )
         
         return comprobante
 
