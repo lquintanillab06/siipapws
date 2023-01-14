@@ -1,11 +1,11 @@
 
-class CfdiEmisor():
+class CfdiReceptor():
     
-    def __init__(self,rfc,nombre,regimen_fiscal,domicilio_fiscal, uso_cfdi):
-        self.nombre = nombre
-        self.rfc = rfc
-        self.regimen_fiscal = regimen_fiscal
-        self.domicilio_fiscal = domicilio_fiscal
-        self.uso_cfdi = uso_cfdi
+    def __init__(self):
+        self.nombre = None
+        self.rfc = None
+        self.regimen_fiscal = None
+        self.domicilio_fiscal = None
+        self.uso_cfdi = None
         self.residencia_fiscal = None
         self.num_reg_id_trib = None

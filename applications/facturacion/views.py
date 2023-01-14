@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .services.cfdi_services import CfdiServices
+from .helpers.cfdi_services import CfdiServices
 
 
 
@@ -16,7 +16,11 @@ class Facturacion(APIView):
     def get(self, request):
         print("Ejecutando el metodo de facturacion !!!") 
         service = CfdiServices()
-        service.create_ingreso()
+        #service.create_ingreso()
+        #service.create_egreso()
+        #service.create_traslado()
+        service.create_nomina()
+
         return Response({"message": "request exitoso1!!!"})
 
 
