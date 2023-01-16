@@ -17,9 +17,9 @@ class Facturacion(APIView):
         print("Ejecutando el metodo de facturacion !!!") 
         service = CfdiServices()
         #service.create_ingreso()
-        #service.create_egreso()
+        service.create_egreso()
         #service.create_traslado()
-        service.create_nomina()
+        #service.create_nomina()
 
         return Response({"message": "request exitoso1!!!"})
 

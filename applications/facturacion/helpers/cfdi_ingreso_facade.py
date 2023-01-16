@@ -3,7 +3,7 @@ from applications.cfdi.cfdi_sat.builders.comprobante_builder_director import Com
 from datetime import datetime,date
 
 class CfdiIngresoFacade():
-
+ 
     def create_cfdi_ingreso(self):
         ingreso  = ObjectCfdiEntityFactory.create_entity_sat_ingreso()
         print("Creando el ingreso")
@@ -20,6 +20,8 @@ class CfdiIngresoFacade():
         ingreso.lugar_de_expedicion = "02870"
         ingreso.moneda = 'MXN'
         ingreso.fecha = date(2023,1,13)
+        ingreso.cuenta_predial = "CUENTA_PREDIAL"
+        ingreso.informacion_aduanera = "PEDIMENTO"
 
         emisor = ObjectCfdiEntityFactory.create_cfdi_emisor()
         emisor.nombre = "LUIS QUINTANILLA BAUTISTA"

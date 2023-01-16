@@ -16,9 +16,7 @@ class ComprobanteBuilderDirector():
             return self.build_traslado(entity)
 
         if entity.tipo == 'N':
-            return self.build_nomina(entity)
-
-       
+            return self.build_nomina(entity)      
 
     def build_ingreso(self,entity):
         builder = (ComprobanteBuilder(entity)

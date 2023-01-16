@@ -171,7 +171,7 @@ class ComprobanteBuilder():
 
     def build_informacion_aduanera(self,informacion):
         informacion_aduanera = ObjectComprobanteFactory.create_informacion_aduanera()
-        informacion_aduanera.NumeroPedimento = informacion.pedimento
+        informacion_aduanera.NumeroPedimento = informacion
         return informacion_aduanera
 
     def build_cuenta_predial(self,cuenta):
