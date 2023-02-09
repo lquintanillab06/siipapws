@@ -16,7 +16,9 @@ DATABASES = {
         'PASSWORD': get_config('PASSWORD'),
         'HOST': get_config('HOST'),
         'PORT': get_config('PORT') ,
-        'OPTIONS': {'ssl': False},
+        'OPTIONS': {
+            'ssl': False,
+            }
     },
 }
 
