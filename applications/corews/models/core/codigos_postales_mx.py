@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# REVISADA, sin cambios
 
 class CodigosPostalesMX(models.Model):
       id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

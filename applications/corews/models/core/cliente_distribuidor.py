@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-
+# REVISADA, sin cambios
 
 class ClienteDistribuidor(models.Model):
     id = models.BigAutoField(primary_key=True)

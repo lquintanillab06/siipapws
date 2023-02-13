@@ -3,6 +3,8 @@ import uuid
 
 from cuenta_contable import CuentaContable
 
+# REVISADA, *** No encuentro para que se esta usando  ***
+
 class CuentaDeudoraMapeo(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

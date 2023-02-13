@@ -4,6 +4,7 @@ import uuid
 
 from .proveedor import Proveedor
 
+# REVISADA, se quito copia, sw2
 
 class ListaDePreciosProveedor(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4,editable= False)
@@ -11,11 +12,9 @@ class ListaDePreciosProveedor(models.Model):
     fecha_inicial = models.DateField()
     fecha_final = models.DateField()
     proveedor = models.ForeignKey(Proveedor, models.DO_NOTHING)
-    sw2 = models.BigIntegerField(blank=True, null=True)
     descripcion = models.CharField(max_length=255, blank=True, null=True)
     ejercicio = models.IntegerField()
     moneda = models.CharField(max_length=5)
-    copia = models.BigIntegerField(blank=True, null=True)
     mes = models.IntegerField()
     aplicada = models.DateField(blank=True, null=True)
     create_user = models.CharField(max_length=255, blank=True, null=True)

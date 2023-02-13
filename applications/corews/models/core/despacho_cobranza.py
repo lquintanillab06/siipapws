@@ -1,5 +1,7 @@
 from django.db import models
 
+# REVISADA, sin cambio
+
 class DespachoDeCobranza(models.Model):
     id = models.CharField(primary_key=True, max_length=255)
     version = models.BigIntegerField()

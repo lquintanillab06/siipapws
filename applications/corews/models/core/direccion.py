@@ -1,5 +1,6 @@
 from django.db import models
 
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar ===
 
 class Direccion(models.Model):
     id = models.BigAutoField(primary_key=True)

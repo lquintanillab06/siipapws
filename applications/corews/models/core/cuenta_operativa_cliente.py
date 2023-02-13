@@ -2,6 +2,8 @@ from django.db import models
 
 from .cliente import Cliente
 
+# REVISADA, sin cambio (Vincula a cuenta_contable CHE, JUR y CRE*)
+
 class CuentaOperativaCliente(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

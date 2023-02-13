@@ -1,5 +1,6 @@
 from django.db import models
 
+# REVISADA y Sin Cambios, se bajo la columna de update_uer
 
 class CuentaContable(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -11,7 +12,6 @@ class CuentaContable(models.Model):
     detalle = models.BooleanField(default=False)
     presentacion_financiera = models.BooleanField(default=False)
     presentacion_fiscal = models.BooleanField(default=False)
-    update_user = models.CharField(max_length=255, blank=True, null=True)
     sub_tipo = models.CharField(max_length=11)
     naturaleza = models.CharField(max_length=9)
     de_resultado = models.BooleanField(default=False)
@@ -21,6 +21,7 @@ class CuentaContable(models.Model):
     descripcion = models.CharField(max_length=300)
     presentacion_presupuestal = models.BooleanField(default=False)
     create_user = models.CharField(max_length=255, blank=True, null=True)
+    update_user = models.CharField(max_length=255, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 

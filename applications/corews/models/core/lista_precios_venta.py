@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar ===
 
 class ListaDePreciosVenta(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4, editable=False)

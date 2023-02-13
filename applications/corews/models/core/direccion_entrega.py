@@ -4,6 +4,7 @@ import uuid
 
 from .cliente import Cliente
 
+# *** Para proceso de Logistica PapelSA ***
 
 class DireccionEntrega(models.Model):
     id = models.BooleanField(primary_key=True, default=uuid.uuid4,editable=False)

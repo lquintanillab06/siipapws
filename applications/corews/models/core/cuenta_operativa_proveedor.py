@@ -2,6 +2,8 @@ from django.db import models
 
 from .proveedor import  Proveedor
 
+# REVISADA, sin cambio
+
 class CuentaOperativaProveedor(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

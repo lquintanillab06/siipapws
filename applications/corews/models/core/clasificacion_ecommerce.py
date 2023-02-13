@@ -1,5 +1,7 @@
 from django.db import models
 
+# REVISADO, no tiene informacion, uso ECOMMERCE
+
 class ClasificacionEcommerce(models.Model):
     id = models.BigIntegerField(primary_key=True)
     version = models.BigIntegerField(blank=True, null=True)

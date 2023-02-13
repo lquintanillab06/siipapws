@@ -5,7 +5,7 @@ from .proveedor import Proveedor
 from .producto import Producto
 from .lista_precios_venta import ListaDePreciosVenta
 
-
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar ===
 
 class ListaDePreciosVentaDet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False )

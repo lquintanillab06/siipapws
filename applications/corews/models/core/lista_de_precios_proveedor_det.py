@@ -4,6 +4,8 @@ import uuid
 from .proveedor_producto import ProveedorProducto
 from .lista_de_precios_proveedor import ListaDePreciosProveedor
 
+# REVISADA, sin cambio
+
 class ListaDePreciosPorProveedorDet(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4, editable= False)
     version = models.BigIntegerField()
