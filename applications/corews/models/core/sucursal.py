@@ -1,13 +1,14 @@
 from django.db import models
 import uuid
 
+# REVISADA, se quito sw2
+
 class Sucursal(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     version = models.BigIntegerField()
     activa = models.BooleanField(default=True)
     clave = models.CharField(unique=True, max_length=20)
-    nombre = models.CharField(unique=True, max_length=255)
-    sw2 = models.BigIntegerField(blank=True, null=True)
+    nombre = models.CharField(unique=True, max_length=255)  
     direccion_calle = models.CharField(max_length=200, blank=True, null=True)
     direccion_codigo_postal = models.CharField(max_length=255, blank=True, null=True)
     direccion_colonia = models.CharField(max_length=255, blank=True, null=True)

@@ -4,6 +4,8 @@ import uuid
 from .chofer import Chofer
 from .facturista_de_embarque import FacturistaDeEmbarque
 
+# *** Para proceso de Logistica PapelSA, actualmente no tiene uso *** REVISADA, se quito sw2 - se agrego seguro_poliza, seguro_vigencia
+
 class Transporte(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4, editable= False, max_length=255)
     version = models.BigIntegerField()
@@ -11,11 +13,12 @@ class Transporte(models.Model):
     capacidad = models.DecimalField(max_digits=19, decimal_places=2)
     modelo = models.CharField(max_length=255, blank=True, null=True)
     numero = models.CharField(max_length=30)
+    seguro_poliza = models.CharField(max_length=255)
+    seguro_vigencia = models.DateField()
     facturista = models.ForeignKey(FacturistaDeEmbarque, models.DO_NOTHING, blank=True, null=True)
     placa = models.CharField(max_length=255, blank=True, null=True)
     marca = models.CharField(max_length=255, blank=True, null=True)
-    update_user = models.CharField(max_length=255, blank=True, null=True)
-    sw2 = models.CharField(max_length=255, blank=True, null=True)
+    update_user = models.CharField(max_length=255, blank=True, null=True)    
     descripcion = models.CharField(max_length=255)
     anio = models.CharField(max_length=255, blank=True, null=True)
     create_user = models.CharField(max_length=255, blank=True, null=True)

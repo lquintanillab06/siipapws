@@ -1,14 +1,15 @@
 from django.db import models
 import uuid
 
+# REVISADA, sin cambio
 
 class TransporteEmpresa(models.Model):
     id = models.UUIDField(primary_key=True,default= uuid.uuid4,editable= False)
     version = models.BigIntegerField()
-    telefono3 = models.CharField(max_length=255, blank=True, null=True)
-    telefono2 = models.CharField(max_length=255, blank=True, null=True)
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255)    
     telefono1 = models.CharField(max_length=255, blank=True, null=True)
+    telefono2 = models.CharField(max_length=255, blank=True, null=True)
+    telefono3 = models.CharField(max_length=255, blank=True, null=True)    
     direccion_numero_exterior = models.CharField(max_length=50, blank=True, null=True)
     direccion_numero_interior = models.CharField(max_length=50, blank=True, null=True)
     direccion_latitud = models.DecimalField(max_digits=19, decimal_places=2, blank=True, null=True)

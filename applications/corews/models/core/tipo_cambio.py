@@ -1,5 +1,6 @@
 from django.db import models
 
+# REVISADA, sin cambio
 
 class TipoDeCambio(models.Model):
     id = models.BigAutoField(primary_key=True)

@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# REVISADA, sin cambio
 
 class ListaDePreciosVenta2(models.Model):
     id = models.BigAutoField(primary_key=True)

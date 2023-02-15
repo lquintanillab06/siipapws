@@ -3,6 +3,8 @@ from django.db import models
 from .cuenta_contable import CuentaContable
 from .sat.producto_sat_clase import ProductoSatClase
 
+# *** Para proceso de Gastos y vinculo Contable no tiene uso ***
+
 class ProductoServicio(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

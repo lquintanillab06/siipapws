@@ -4,16 +4,13 @@ import uuid
 from .vendedor import Vendedor
 from .cliente import Cliente
 
+# REVISADA, Se quito sw2, vendedor, comision_cobrador, comision_vendedor y "clave (para descontinuar tiene buscador por nombre
+
 class Socio(models.Model):
     id = models.UUIDField(primary_key= True, default=uuid.uuid4, editable= False)
-    version = models.BigIntegerField()
-    clave = models.CharField(max_length=255)
-    sw2 = models.BigIntegerField(blank=True, null=True)
-    vendedor = models.ForeignKey(Vendedor, models.DO_NOTHING, blank=True, null=True)
+    version = models.BigIntegerField()    
     nombre = models.CharField(max_length=255)
     cliente = models.ForeignKey(Cliente, models.DO_NOTHING, null= True)
-    comision_cobrador = models.DecimalField(max_digits=19, decimal_places=2)
-    comision_vendedor = models.DecimalField(max_digits=19, decimal_places=2)
     direccion = models.CharField(max_length=255)
     direccion_fiscal_numero_exterior = models.CharField(max_length=50, blank=True, null=True)
     direccion_fiscal_numero_interior = models.CharField(max_length=50, blank=True, null=True)

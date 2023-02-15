@@ -1,7 +1,7 @@
 
 from django.db import models
 
-
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar === Se tiene la tabla codigos_postales_mx actualmente
 
 class ZonasRuteo(models.Model):
     d_codigo = models.CharField(max_length=255, blank=True, null=True)

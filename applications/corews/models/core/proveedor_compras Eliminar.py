@@ -3,6 +3,7 @@ import uuid
 
 from .proveedor import Proveedor
 
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar (Proveedor las columnas de esta tabla) ===
 
 class ProveedorCompras(models.Model):
     id = models.UUIDField(primary_key=True,default= uuid.uuid4, editable= False)

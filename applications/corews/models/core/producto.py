@@ -8,6 +8,7 @@ from .proveedor import Proveedor
 from .sat.producto_sat import ProductoSat
 from .sat.unidad_sat import UnidadSat
 
+# REVISADA, se quito sw2 y ("descripcion; linea, clase y marca")
 class Producto(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     version = models.BigIntegerField()
@@ -39,12 +40,8 @@ class Producto(models.Model):
     precio_contado = models.DecimalField(max_digits=19, decimal_places=2)
     precio_credito = models.DecimalField(max_digits=19, decimal_places=2)
     presentacion = models.CharField(max_length=9)
-    proveedor_favorito = models.ForeignKey(Proveedor, models.DO_NOTHING, blank=True, null=True)
-    sw2 = models.BigIntegerField(blank=True, null=True)
+    proveedor_favorito = models.ForeignKey(Proveedor, models.DO_NOTHING, blank=True, null=True)    
     unidad = models.CharField(max_length=10)
-    ''' clase_0 = models.CharField(db_column='clase', max_length=255, blank=True, null=True)  # Field renamed because of name conflict.
-    linea_0 = models.CharField(db_column='linea', max_length=255, blank=True, null=True)  # Field renamed because of name conflict.
-    marca_0 = models.CharField(db_column='marca', max_length=255, blank=True, null=True)  # Field renamed because of name conflict. '''
     producto_sat = models.ForeignKey(ProductoSat, models.DO_NOTHING, blank=True, null=True)
     unidad_sat = models.ForeignKey(UnidadSat, models.DO_NOTHING, blank=True, null=True)
     grupo_id = models.CharField(max_length=255, blank=True, null=True)

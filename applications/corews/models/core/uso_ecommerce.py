@@ -1,4 +1,7 @@
 from django.db import models
+
+# REVISADO, no tiene informacion, para uso ECOMMERCE
+
 class UsoEcommerce(models.Model):
     id = models.BigIntegerField(primary_key=True)
     version = models.BigIntegerField(blank=True, null=True)

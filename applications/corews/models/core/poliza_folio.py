@@ -1,5 +1,7 @@
 from django.db import models
 
+# REVISADA, sin cambio
+
 class PolizaFolio(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

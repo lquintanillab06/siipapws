@@ -4,6 +4,8 @@ from .proveedor import Proveedor
 from .producto import Producto
 from .lista_precios_venta2 import ListaDePreciosVenta2
 
+# REVISADA, sin cambio
+
 class ListaDePreciosVentaDet2(models.Model):
     id = models.BigAutoField(primary_key=True)
     version = models.BigIntegerField()

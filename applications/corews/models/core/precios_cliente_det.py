@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# REVISADA, se quito sw2
 
 class PreciosPorClienteDet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
@@ -14,8 +15,7 @@ class PreciosPorClienteDet(models.Model):
     descuento = models.DecimalField(max_digits=19, decimal_places=2)
     precios_por_cliente_id = models.CharField(max_length=255)
     costop = models.DecimalField(max_digits=19, decimal_places=2)
-    producto_id = models.CharField(max_length=255)
-    sw2 = models.CharField(max_length=255, blank=True, null=True)
+    producto_id = models.CharField(max_length=255)    
     descripcion = models.CharField(max_length=255)
     precio_por_kilo = models.DecimalField(max_digits=19, decimal_places=2)
     costou = models.DecimalField(max_digits=19, decimal_places=2)

@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
 
+# REVISADA, sin cambio
+
 class Marca(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     version = models.BigIntegerField()

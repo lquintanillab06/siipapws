@@ -3,6 +3,8 @@ import uuid
 
 from .proveedor import Proveedor
 
+# === REVISADA, Sin Uso Para Descontinuar y Elimnar ===
+
 class ProveedorContactos(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
     version = models.BigIntegerField()
