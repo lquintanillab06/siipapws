@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-# Revisada y Modificada
+# Revisada y Modificada; date_created y last_updated
 
 class BancoSat(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4, editable= False)
